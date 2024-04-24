@@ -15,8 +15,11 @@ comp_button = sg.Button("Complete")
 exit_button = sg.Button("Exit")
 
 # Window
+# layout = [[label, input_box, add_button], [listbox, edit_button]]
 window = sg.Window("My ToDo app",
-                   layout=[[label, input_box, add_button], [listbox, edit_button]],
+                   layout=[[label, input_box, add_button],
+                           [listbox, edit_button, comp_button],
+                           [exit_button]],
                    font=("Times New Roman", 12))
 while True:
     event, values = window.read()
@@ -40,6 +43,17 @@ while True:
             todos[index] = new_todo
             functions.write_todos(todos)
             window['items'].update(values=todos)
+
+        case "Complete":
+            todo_complete = values['items'][0]
+            todos = functions.get_todos()
+            todos.remove(todo_complete)
+            functions.write_todos(todos)
+            window['items'].update(values=todos)
+            window['todo'].update(value='')
+
+        case "Exit":
+            break
 
         case 'items':
             window['todo'].update(value=values['items'][0])

@@ -12,9 +12,11 @@ listbox = sg.Listbox(values=functions.get_todos(), key='items',
 
 
 # Buttons
-add_button = sg.Button("Add")
+add_button = sg.Button(size=2, image_source="004 add.png", mouseover_colors="LightBlue2",
+                       tooltip="Add Task", key='Add')
 edit_button = sg.Button("Edit")
-comp_button = sg.Button("Complete")
+comp_button = sg.Button(size=10, image_source="004 complete.png", mouseover_colors="LightBlue2",
+                        tooltip="Complete Task", key='Complete')
 exit_button = sg.Button("Exit")
 
 # Window
